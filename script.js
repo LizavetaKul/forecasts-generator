@@ -5,7 +5,7 @@ let predictions = ["Ваша цель достижима", "Цель опред�
     "Вам не стать идеальным и это - здорово...есть куда стремиться",
     "Вы получите то, чего никогда не имели...если станете делать то,чего никогда не делали",
 ];
-
+let firstClick = false;
 const button = document.querySelector(".forecast-btn");
 const cardTemplate = document.querySelector('#forecast-item');
 const container = document.querySelector('.container');
@@ -15,10 +15,13 @@ button.addEventListener('click', () => {
     const probability = document.querySelector("p");
 
     const card = makeCardByTemplate(prediction, probability);
-    container.append(card);
+    if (firstClick == true) {
+        container.append(card);
+    }
 
     prediction.textContent = predictions[generateRandomValue(0, 4)];
-    probability.textContent = generateRandomValue(0, 100);
+    probability.textContent = generateRandomValue(0, 100) + "%";
+    firstClick = true;
 })
 
 function makeCardByTemplate(prediction, probability) {
